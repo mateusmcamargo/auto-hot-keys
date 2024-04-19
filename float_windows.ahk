@@ -6,7 +6,7 @@ global X
 global Y
 global begWidth
 global begHeight
-/*
+
 ;pressing RShift + c -> floatCenter()
 RShift & c::
     ;get active window title
@@ -16,7 +16,7 @@ RShift & c::
     ;call the function
     floatCenter(windowName)
 return
-*/
+
 ;pressing RShift + b -> floatCenterBig()
 RShift & b::
     ;get active window title
@@ -36,6 +36,34 @@ RShift & f::
     ;call the function
     floatCenterFull(windowName)
 return
+
+floatCenter(windowName) {
+    ;get screen size
+    ScreenWidth   := A_ScreenWidth
+    ScreenHeight  := A_ScreenHeight
+
+    ;get taskbar size
+    TaskbarHeight := 40
+
+    ;buffer to add a little margin
+    Buffer        := 20
+
+    ;change the position to compensate buffer
+    Padd          := Buffer / 2
+
+    ;limit height
+    maxHeight := ScreenHeight - TaskbarHeight - Buffer - Padd
+    if (begHeight >= maxHeight) {
+        begHeight := maxHeight
+    }
+
+    ;get new position
+    NewX := (ScreenWidth  - begWidth)  / 2
+    NewY := ((ScreenHeight - begHeight) / 2) - TaskbarHeight + (Buffer / 2)
+
+    ;move active window to the new position
+    WinMove, %windowName%,, NewX, NewY, begWidth, begHeight
+}
 
 floatCenterBig(windowName) {
     ;get screen size
@@ -66,22 +94,22 @@ floatCenterBig(windowName) {
         begWidth  := (ScreenWidth  / 1.5) - VSCodeCutW
 
         ;get new position
-        NewX := (ScreenWidth - begWidth) // 2
-        NewY := ((ScreenHeight - begHeight) // 2) - TaskbarHeight + (Buffer / 2)
+        NewX := (ScreenWidth - begWidth) / 2
+        NewY := ((ScreenHeight - begHeight) / 2) - TaskbarHeight + (Buffer / 2)
 
         ;debug
-        MsgBox, VSCode: o título da janela ativa é: %windowName%
+        ;MsgBox, VSCode: o título da janela ativa é: %windowName%
     } else {
         ;now for any windowName, set new size
         begHeight := ScreenHeight - TaskbarHeight - Buffer - Padd
         begWidth  := ScreenWidth  / 1.5
 
         ;get new position
-        NewX := (ScreenWidth - begWidth) // 2
-        NewY := ((ScreenHeight - begHeight) // 2) - TaskbarHeight + (Buffer / 2) + (Padd / 2)
+        NewX := (ScreenWidth - begWidth) / 2
+        NewY := ((ScreenHeight - begHeight) / 2) - TaskbarHeight + (Buffer / 2) + (Padd / 2)
 
         ;debug
-        MsgBox, ANY: o título da janela ativa é: %windowName%
+        ;MsgBox, ANY: o título da janela ativa é: %windowName%
     }
 
     ;move active window to the new position
@@ -117,22 +145,22 @@ floatCenterFull(windowName) {
         begWidth  := ScreenWidth  - (Buffer / 2) -   VSCodeCutW
 
         ;get new position
-        NewX := (ScreenWidth - begWidth) // 2
-        NewY := ((ScreenHeight - begHeight) // 2) - TaskbarHeight + (Buffer / 2)
+        NewX := (ScreenWidth - begWidth) / 2
+        NewY := ((ScreenHeight - begHeight) / 2) - TaskbarHeight + (Buffer / 2)
 
         ;debug
-        MsgBox, VSCode: o título da janela ativa é: %windowName%
+        ;MsgBox, VSCode: o título da janela ativa é: %windowName%
     } else {
         ;now for any windowName, set new size
         begHeight := ScreenHeight - Buffer - Padd - TaskbarHeight
         begWidth  := ScreenWidth  - (Buffer / 2)
 
         ;get new position
-        NewX := (ScreenWidth - begWidth) // 2
-        NewY := ((ScreenHeight - begHeight) // 2) - TaskbarHeight + (Buffer / 2) + (Padd / 2)
+        NewX := (ScreenWidth - begWidth) / 2
+        NewY := ((ScreenHeight - begHeight) / 2) - TaskbarHeight + (Buffer / 2) + (Padd / 2)
 
         ;debug
-        MsgBox, ANY: o título da janela ativa é: %windowName%
+        ;MsgBox, ANY: o título da janela ativa é: %windowName%
     }
 
     ;move active window to the new position
@@ -141,8 +169,13 @@ floatCenterFull(windowName) {
 
 /*
 floatCenter() //center
-floatCenterFull() //center fullscreen
-floatCenterBig //center big
+✔ floatCenterFull() //center fullscreen
+✔ floatCenterBig //center big
 floatLeft() //center left side
 floatRight() //center right side
+*/
+
+/*
+fix values - ANY
+fix value - VScode
 */
