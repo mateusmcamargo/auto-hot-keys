@@ -51,7 +51,7 @@ floatCenterBig(windowName) {
     ;change the position to compensate buffer
     Padd          := Buffer / 2
 
-    ;custom sizes for specific windows (more can be added on the switch statement)
+    ;custom sizes for specific windows (more can be added in the if statement)
     VSCodeCutH    := 16
     VSCodeCutW    := 16
 
@@ -65,7 +65,7 @@ floatCenterBig(windowName) {
         begHeight := ScreenHeight - TaskbarHeight - Buffer - VSCodeCutH
         begWidth  := (ScreenWidth  / 1.5) - VSCodeCutW
 
-        ;set new position
+        ;get new position
         NewX := (ScreenWidth - begWidth) // 2
         NewY := ((ScreenHeight - begHeight) // 2) - TaskbarHeight + (Buffer / 2)
 
@@ -76,44 +76,66 @@ floatCenterBig(windowName) {
         begHeight := ScreenHeight - TaskbarHeight - Buffer - Padd
         begWidth  := ScreenWidth  / 1.5
 
+        ;get new position
         NewX := (ScreenWidth - begWidth) // 2
         NewY := ((ScreenHeight - begHeight) // 2) - TaskbarHeight + (Buffer / 2) + (Padd / 2)
 
         ;debug
         MsgBox, ANY: o título da janela ativa é: %windowName%
     }
-    */
 
     ;move active window to the new position
     WinMove, %windowName%,, NewX, NewY, begWidth, begHeight
 }
 
-; Função para centralizar a janela em 'tela cheia'
 floatCenterFull(windowName) {
-    ; Calcula a posição central da tela
+    ;get screen size
     ScreenWidth   := A_ScreenWidth
     ScreenHeight  := A_ScreenHeight
+
+    ;get taskbar size
     TaskbarHeight := 40
+
+    ;buffer to add a little margin
     Buffer        := 20
-    Padd          := 10
+
+    ;change the position to compensate buffer
+    Padd          := Buffer / 2
+
+    ;custom sizes for specific windows (more can be added in the if statement)
     VSCodeCutH    := 16
     VSCodeCutW    := 16
 
-    if (windowName = "centralize_windows.ahk - Visual Studio Code") {
+    ;checks for specific windows. 
+    ;eg: the first case is VSCode, as it is a bit bigger than the others
+    ;more windowName cases can be added
+    ;msgBox can be used to get windowName
+    ;a switch statement could be used, but some windows change name constantly, so an if statement works best
+    if (InStr(windowName, "Visual Studio Code")) {
+        ;compensate for the difference in size and set new size
         begHeight := ScreenHeight - Buffer - VSCodeCutH - TaskbarHeight 
         begWidth  := ScreenWidth  - (Buffer / 2) -   VSCodeCutW
 
+        ;get new position
         NewX := (ScreenWidth - begWidth) // 2
         NewY := ((ScreenHeight - begHeight) // 2) - TaskbarHeight + (Buffer / 2)
+
+        ;debug
+        MsgBox, VSCode: o título da janela ativa é: %windowName%
     } else {
+        ;now for any windowName, set new size
         begHeight := ScreenHeight - Buffer - Padd - TaskbarHeight
         begWidth  := ScreenWidth  - (Buffer / 2)
 
+        ;get new position
         NewX := (ScreenWidth - begWidth) // 2
         NewY := ((ScreenHeight - begHeight) // 2) - TaskbarHeight + (Buffer / 2) + (Padd / 2)
+
+        ;debug
+        MsgBox, ANY: o título da janela ativa é: %windowName%
     }
-    
-    ; Move a janela para a posição central
+
+    ;move active window to the new position
     WinMove, %windowName%,, NewX, NewY, begWidth, begHeight
 }
 
