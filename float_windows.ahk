@@ -203,20 +203,20 @@ floatCenterFull(windowName) {
 }
 
 /*
-✔ floatCenter() //center
-✔ floatCenterFull() //center fullscreen
-✔ floatCenterBig //center big
-floatLeft() //center left side
-floatRight() //center right side
+☑ floatCenter() //center
+☑ floatCenterFull() //center fullscreen
+☑ floatCenterBig //center big
+☐ floatLeft() //center left side
+☐ floatRight() //center right side
 */
 
 /*
-fix values - ANY
-fix value - VScode
+☑ fix values - ANY
+☑ fix value - VScode
 */
 
 /*
-add to windows startup
-auto center when resize
-get spotfy size and set as minimum
+☐ add to windows startup
+☐ auto center when resize
+☐ get spotfy size and set as minimum
 */
