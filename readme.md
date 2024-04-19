@@ -8,12 +8,13 @@ Script que adiciona atalhos para manipulação de janelas.
 - RShift + F -> deixa a janela em um modo 'tela cheia', mas com uma pequena borda;
 
 
->**NOTA:** O script entende que a barra de tarefas está visível e leva em consideração seu tamanho. Basicamente, ele desconsidera a barra de tarefas como parte da tela na hora de calcular as medidas
+>**NOTA:** O script entende se a barra de tarefas está visível e leva em consideração seu tamanho. Basicamente, ele desconsidera a barra de tarefas como parte da tela na hora de calcular as medidas caso ela esteja visível
 >
->A barra de tarefas no Windows 11 tem como padrão 40px de altura. No script, ela está configurada como 50px, já que ele foi escrito em um computador com a escala de resolução em 125% *(Configurações > Sistema > Tela > Escala e layout)*
+>O script obtém automaticamente o tamanho da barra de tarefas, que no Windows 11 tem como padrão 40 pixels de altura.
 >
->Para ignorar a barra de tarefas, basta mudar o valor de **taskbarHeight** para 0 e alterar o valor de **buffer**, já que essa variável por padrão depende da primeira.
-
+>Se mesmo assim queira verificar a altura da barra de tarefas manualmente, basta ir em: *(Configurações > Sistema > Tela > Escala e layout)* e multiplicar a altura padrão pela escala de resolução do computador.
+>Exemplo: se a escala for 125%, basta fazer **40 * 1,5**, que terá o resultado de 50 pixels.
+>
 
 **exemplo de alteração para "ignorar" a barra de tarefas:**
 

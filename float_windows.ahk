@@ -220,3 +220,14 @@ floatCenterFull(windowName) {
 ☐ auto center when resize
 ☐ get spotfy size and set as minimum
 */
+
+/*
+; Obtém a posição e o tamanho da barra de tarefas
+WinGetPos, X, Y, Width, Height, ahk_class Shell_TrayWnd
+
+; Verifica se a barra de tarefas está visível
+if (Y < A_ScreenHeight)
+    MsgBox, A barra de tarefas está visível.
+else
+    MsgBox, A barra de tarefas está oculta.
+*/
