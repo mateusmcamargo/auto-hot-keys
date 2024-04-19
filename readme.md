@@ -2,7 +2,7 @@
 
 ## float_windows.ahk
 
-Script que adiciona atalhos para manipulação de janelas:
+Script que adiciona atalhos para manipulação de janelas.
 - RShift + C -> centraliza a janela com um limite de tamanho em altura;
 - RShift + B -> centraliza a janela, com a mesma altura do modo 'tela cheia' e 2/3 da largura da tela
 - RShift + F -> deixa a janela em um modo 'tela cheia', mas com uma pequena borda;
@@ -13,31 +13,31 @@ Script que adiciona atalhos para manipulação de janelas:
 >
 >Para ignorar a barra de tarefas, basta mudar o valor de **taskbarHeight** para 0 e alterar o valor de **buffer**, já que essa variável por padrão depende da primeira.
 
-**ex:**
+>**ex:**
 
-- *original:*
-```
-;get taskbar size
-global taskbarHeight := 50
-
-;buffer to add a little margin
-global buffer        := taskbarHeight / 2
-
-;change the position to compensate buffer
-global padd          := buffer / 2
-```
-
-- *modificado:*
-```
-;get taskbar size
-global taskbarHeight := 0
-
-;buffer to add a little margin
-global buffer        := 20
-
-;change the position to compensate buffer
-global padd          := buffer / 2
-```
+>- *original:*
+>```
+>;get taskbar size
+>global taskbarHeight := 50
+>
+>;buffer to add a little margin
+>global buffer        := taskbarHeight / 2
+>
+>;change the position to compensate buffer
+>global padd          := buffer / 2
+>```
+>
+>- *modificado:*
+>```
+>;get taskbar size
+>global taskbarHeight := 0
+>
+>;buffer to add a little margin
+>global buffer        := 20
+>
+>;change the position to compensate buffer
+>global padd          := buffer / 2
+>```
 
 
 1. **Adicionar Atalho à Pasta de Inicialização**:
