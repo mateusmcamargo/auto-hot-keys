@@ -1,11 +1,12 @@
 # autoHotKeys-scripts
 
-## float_windows.ahk
+## 🪟 float_windows.ahk
 
 Script que adiciona atalhos para manipulação de janelas.
 - RShift + C -> centraliza a janela com um limite de tamanho em altura;
 - RShift + B -> centraliza a janela, com a mesma altura do modo 'tela cheia' e 2/3 da largura da tela
 - RShift + F -> deixa a janela em um modo 'tela cheia', mas com uma pequena borda;
+
 
 >**NOTA:** O script entende que a barra de tarefas está visível e leva em consideração seu tamanho. Basicamente, ele desconsidera a barra de tarefas como parte da tela na hora de calcular as medidas
 >
@@ -13,9 +14,10 @@ Script que adiciona atalhos para manipulação de janelas.
 >
 >Para ignorar a barra de tarefas, basta mudar o valor de **taskbarHeight** para 0 e alterar o valor de **buffer**, já que essa variável por padrão depende da primeira.
 
+
 **ex de alteração para "ignorar" a barra de tarefas:**
 
-- *original:*
+*original:*
 ```
 ;get taskbar size
 global taskbarHeight := 50
@@ -27,7 +29,7 @@ global buffer        := taskbarHeight / 2
 global padd          := buffer / 2
 ```
 
-- *modificado:*
+*modificado:*
 ```
 ;get taskbar size
 global taskbarHeight := 0
@@ -39,6 +41,15 @@ global buffer        := 20
 global padd          := buffer / 2
 ```
 >Vale lembrar que todos os valores podem ser alterados e customizados, desde as teclas utilizadas nos atalhos até variáveis que compõem as funções.
+
+
+## ⚙️ taskbar.ahk
+
+Script que manipula a barra de tarefas
+- RShift + ; -> liga/desliga (esconde/mostra) a barra de tarefas;
+
+
+## inicialização automática dos scripts
 
 1. **Adicionar Atalho à Pasta de Inicialização**:
    - O Windows possui uma pasta especial chamada **Inicialização**, onde você pode adicionar atalhos de aplicativos que deseja iniciar com o sistema.
