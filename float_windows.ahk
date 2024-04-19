@@ -91,3 +91,11 @@ floatFull(windowName) {
     ; Move a janela para a posição central
     WinMove, %windowName%,, NewX, NewY, begWidth, begHeight
 }
+
+/*
+floatCenter() //center
+floatCenterFull() //center fullscreen
+floatCenterBig //center big
+floatLeft() //center left side
+floatRight() //center right side
+*/

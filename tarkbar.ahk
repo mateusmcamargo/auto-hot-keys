@@ -1,0 +1,3 @@
+/*
+toggleHide() //hide or show
+*/
