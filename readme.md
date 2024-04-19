@@ -1,5 +1,45 @@
 # autoHotKeys-scripts
 
+## float_windows.ahk
+
+Script que adiciona atalhos para manipulação de janelas:
+- RShift + C -> centraliza a janela com um limite de tamanho em altura;
+- RShift + B -> centraliza a janela, com a mesma altura do modo 'tela cheia' e 2/3 da largura da tela
+- RShift + F -> deixa a janela em um modo 'tela cheia', mas com uma pequena borda;
+
+>**NOTA:** O script entende que a barra de tarefas está visível e leva em consideração seu tamanho. Basicamente, ele desconsidera a barra de tarefas como parte da tela na hora de calcular as medidas
+>
+>A barra de tarefas no Windows 11 tem como padrão 40px de altura. No script, ela está configurada como 50px, já que ele foi escrito em um computador com a escala de resolução em 125% *(Configurações > Sistema > Tela > Escala e layout)*
+>
+>Para ignorar a barra de tarefas, basta mudar o valor de **taskbarHeight** para 0 e alterar o valor de **buffer**, já que essa variável por padrão depende da primeira.
+
+**ex:**
+
+- *original:*
+```
+;get taskbar size
+global taskbarHeight := 50
+
+;buffer to add a little margin
+global buffer        := taskbarHeight / 2
+
+;change the position to compensate buffer
+global padd          := buffer / 2
+```
+
+- *modificado:*
+```
+;get taskbar size
+global taskbarHeight := 0
+
+;buffer to add a little margin
+global buffer        := 20
+
+;change the position to compensate buffer
+global padd          := buffer / 2
+```
+
+
 1. **Adicionar Atalho à Pasta de Inicialização**:
    - O Windows possui uma pasta especial chamada **Inicialização**, onde você pode adicionar atalhos de aplicativos que deseja iniciar com o sistema.
    - Siga estas etapas:
