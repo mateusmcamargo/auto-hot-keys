@@ -15,7 +15,7 @@ Script que adiciona atalhos para manipulação de janelas.
 >Para ignorar a barra de tarefas, basta mudar o valor de **taskbarHeight** para 0 e alterar o valor de **buffer**, já que essa variável por padrão depende da primeira.
 
 
-**ex de alteração para "ignorar" a barra de tarefas:**
+**exemplo de alteração para "ignorar" a barra de tarefas:**
 
 *original:*
 ```
