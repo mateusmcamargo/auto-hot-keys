@@ -13,32 +13,32 @@ Script que adiciona atalhos para manipulação de janelas.
 >
 >Para ignorar a barra de tarefas, basta mudar o valor de **taskbarHeight** para 0 e alterar o valor de **buffer**, já que essa variável por padrão depende da primeira.
 
->**ex:**
+**ex de alteração para "ignorar" a barra de tarefas:**
 
->- *original:*
->```
->;get taskbar size
->global taskbarHeight := 50
->
->;buffer to add a little margin
->global buffer        := taskbarHeight / 2
->
->;change the position to compensate buffer
->global padd          := buffer / 2
->```
->
->- *modificado:*
->```
->;get taskbar size
->global taskbarHeight := 0
->
->;buffer to add a little margin
->global buffer        := 20
->
->;change the position to compensate buffer
->global padd          := buffer / 2
->```
+- *original:*
+```
+;get taskbar size
+global taskbarHeight := 50
 
+;buffer to add a little margin
+global buffer        := taskbarHeight / 2
+
+;change the position to compensate buffer
+global padd          := buffer / 2
+```
+
+- *modificado:*
+```
+;get taskbar size
+global taskbarHeight := 0
+
+;buffer to add a little margin
+global buffer        := 20
+
+;change the position to compensate buffer
+global padd          := buffer / 2
+```
+>Vale lembrar que todos os valores podem ser alterados e customizados, desde as teclas utilizadas nos atalhos até variáveis que compõem as funções.
 
 1. **Adicionar Atalho à Pasta de Inicialização**:
    - O Windows possui uma pasta especial chamada **Inicialização**, onde você pode adicionar atalhos de aplicativos que deseja iniciar com o sistema.
