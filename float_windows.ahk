@@ -65,7 +65,7 @@ getData() {
     ;get active window position and size
     WinGetPos, X, Y, begWidth, begHeight, %windowName%
     ;get taskbar position and size
-    WinGetPos, tbX, tbY, 0, tbH, ahk_class Shell_TrayWnd
+    WinGetPos, tbX, tbY, tbW, tbH, ahk_class Shell_TrayWnd
 
     ;store taskbar height
     taskbarHeight := tbH
