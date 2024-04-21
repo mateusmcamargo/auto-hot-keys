@@ -10,36 +10,26 @@ Script que adiciona atalhos para manipulação de janelas.
 
 >**NOTA:** O script entende se a barra de tarefas está visível e leva em consideração seu tamanho. Basicamente, ele desconsidera a barra de tarefas como parte da tela na hora de calcular as medidas caso ela esteja visível
 >
->O script obtém automaticamente o tamanho da barra de tarefas, que no Windows 11 tem como padrão 40 pixels de altura.
+>O script não obtém automaticamente o tamanho da barra de tarefas, que no Windows 11 tem como padrão 40 pixels de altura.
 >
->Se mesmo assim queira verificar a altura da barra de tarefas manualmente, basta ir em: *(Configurações > Sistema > Tela > Escala e layout)* e multiplicar a altura padrão pela escala de resolução do computador.
+>Caso queira verificar a altura da barra de tarefas manualmente, basta ir em: *(Configurações > Sistema > Tela > Escala e layout)* e multiplicar a altura padrão pela escala de resolução do computador.
 >Exemplo: se a escala for 125%, basta fazer **40 * 1,5**, que terá o resultado de 50 pixels.
 >
 
-**exemplo de alteração para "ignorar" a barra de tarefas:**
+**exemplo de alteração para obter automaticamente a altura da barra de tarefas:**
 
 *original:*
 ```
-;get taskbar size
-global taskbarHeight := 50
-
-;buffer to add a little margin
-global buffer        := taskbarHeight / 2
-
-;change the position to compensate buffer
-global padd          := buffer / 2
+/* na função getData()*/
+;get taskbar position and size
+WinGetPos, taskbarX, taskbarY, 0, 0, ahk_class Shell_TrayWnd
 ```
 
 *modificado:*
 ```
-;get taskbar size
-global taskbarHeight := 0
-
-;buffer to add a little margin
-global buffer        := 20
-
-;change the position to compensate buffer
-global padd          := buffer / 2
+/* na função getData()*/
+;get taskbar position and size
+WinGetPos, taskbarX, taskbarY, taskbarWidth, taskbarHeight, ahk_class Shell_TrayWnd
 ```
 >Vale lembrar que todos os valores podem ser alterados e customizados, desde as teclas utilizadas nos atalhos até variáveis que compõem as funções.
 

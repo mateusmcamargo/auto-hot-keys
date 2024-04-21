@@ -6,24 +6,23 @@ global X
 global Y
 global begWidth
 global begHeight
+global taskbarHeight
 
 ;get screen size
-global screenWidth   := A_screenWidth
-global screenHeight  := A_screenHeight
+global screenWidth  := A_screenWidth
+global screenHeight := A_screenHeight
 
-;get taskbar size
-global taskbarHeight := 50
-
-;buffer to add a little margin
-global buffer        := taskbarHeight / 2
-
-;change the position to compensate buffer
-global padd          := buffer / 2
+;default values
+global zeroX        := -8
+global zeroY        := 0
+global buffer       := 16
+global fullWidth
+global fullheight
 
 ;custom sizes for specific windows
 ;(more can be added here and in the if statement, maybe a for loop can be used as well)
-global vsCodeCutH    := 8
-global vsCodeCutW    := 16
+global vsCodeCutH   := 8
+global vsCodeCutW   := 16
 
 /* CENTER
         ;now for any windowName, set new size
@@ -41,33 +40,47 @@ global vsCodeCutW    := 16
 
 ;pressing RShift + c -> floatCenter()
 RShift & c::
-    ;get active window title
-    WinGetTitle, windowName, A
-    ;get active window position and size
-    WinGetPos, X, Y, begWidth, begHeight, %windowName%
-    ;call the function
+    ;call the functions
+    getData()
     floatCenter(windowName)
 return
 
 ;pressing RShift + b -> floatCenterBig()
 RShift & b::
-    ;get active window title
-    WinGetTitle, windowName, A
-    ;get active window position and size
-    WinGetPos, X, Y, begWidth, begHeight, %windowName%
     ;call the function
+    getData()
     floatCenterBig(windowName)
 return
 
 ;pressing RShift + f -> floatCenterFull()
 RShift & f::
+    ;call the function
+    getData()
+    floatCenterFull(windowName)
+return
+
+getData() {
     ;get active window title
     WinGetTitle, windowName, A
     ;get active window position and size
     WinGetPos, X, Y, begWidth, begHeight, %windowName%
-    ;call the function
-    floatCenterFull(windowName)
-return
+    ;get taskbar position and size
+    WinGetPos, tbX, tbY, 0, tbH, ahk_class Shell_TrayWnd
+
+    ;store taskbar height
+    taskbarHeight := tbH
+    ; Verifica se a barra de tarefas está visível
+    if (tbY < screenHeight - buffer) {
+        MsgBox, %tbY% visivel.
+        taskbarHeight := tbH
+    } else {
+        MsgBox, %tbY% oculta.
+        taskbarHeight := 0
+    }
+    ;reset
+    fullWidth     := screenWidth  + buffer
+    fullheight    := (screenHeight + buffer / 2) - taskbarHeight
+}
 
 floatCenter(windowName) {
     ;checks for specific windows. 
@@ -138,16 +151,16 @@ floatCenterBig(windowName) {
         ;MsgBox, VSCode: o título da janela ativa é: %windowName%
     } else {
         ;now for any windowName, set new size
-        begHeight := (screenHeight - taskbarHeight) - buffer
-        begWidth  := screenWidth  / 1.5
+        begHeight := fullheight
+        begWidth  := fullWidth
 
         ;screen center
-        centerX := (screenWidth  - begWidth ) / 2
-        centerY := (screenHeight - begHeight) / 2
+        centerX := zeroX
+        centerY := zeroY
 
         ;get new position
         NewX := centerX
-        NewY := centerY - taskbarHeight + buffer
+        NewY := centerY
 
         ;debug
         ;MsgBox, ANY: o título da janela ativa é: %windowName%
